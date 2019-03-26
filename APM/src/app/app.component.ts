@@ -59,6 +59,7 @@ export class AppComponent {
 
   hideMessages(): void {
     this.messageService.isDisplayed = false;
+    this.router.navigate([{ outlets: { popup: null } }]);
   }
 
   logOut(): void {
