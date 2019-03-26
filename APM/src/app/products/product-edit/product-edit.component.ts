@@ -22,12 +22,14 @@ export class ProductEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      params => {
-        const id = +params.get('id');
-        this.getProduct(id);
+    this.route.data.subscribe(
+      data => {
+        const resolvedData = data['resolvedData'];
+        this.errorMessage = resolvedData.error;
+        this.onProductRetrieved(resolvedData.product);
       }
     );
+
   }
 
   getProduct(id: number): void {
