@@ -20,7 +20,7 @@ import { ProductEditTagsComponent } from './product-edit/product-edit-tags.compo
           {
             path: '',
             component: ProductListComponent
-          }
+          },
           {
             path: ':id',
             component: ProductDetailComponent,
