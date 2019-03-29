@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { AuthGuard } from './user/auth.guard';
+import { SelectiveStrategy } from './selective-strategy.service';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path: 'products',
     canActivate: [AuthGuard],
+    data: { preload: true },
     loadChildren: './products/product.module#ProductModule'
   },
   {
@@ -30,7 +32,7 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes, {
         enableTracing: true,
-        preloadingStrategy: PreloadAllModules
+        preloadingStrategy: SelectiveStrategy
       })
   ],
   exports: [RouterModule]
